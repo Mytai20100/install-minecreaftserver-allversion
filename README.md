@@ -1,4 +1,4 @@
-<h3 align="center"><img src="https://media1.tenor.com/m/OZsJxcn2fiAAAAAC/funny-cat-eating-chips.gif" alt="logo" height="100px"></h3>
+<h3 align="center"><img src="https://imgur.com/92DMYVr.gif" alt="logo" height="100px"></h3>
 <p align="center">A command-line system information tool written in bash 3.2+</p>
 
 <p align="center">
