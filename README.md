@@ -12,7 +12,7 @@
 # Install server
 ```sh
 #dowload file jar server
-curl clone https://github.com/Mytai20100/install-minecreaftserver-allversion/raw/refs/heads/main/install.sh
+wget clone https://github.com/Mytai20100/install-minecreaftserver-allversion/raw/refs/heads/main/install.sh
 ```
 # Run install.sh
 
