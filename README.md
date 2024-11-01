@@ -7,7 +7,7 @@
 <a href="https://repology.org/metapackage/neofetch"><img src="https://repology.org/badge/tiny-repos/neofetch.svg" alt="Packaging status"></a>
 </p>
 
-<img src="https://imgur.com/AXmxbev" alt="Minecreaft" align="right" height="240px">
+<img src="https://imgur.com/AXmxbev.png" alt="Minecreaft" align="right" height="240px">
 
 # Install server
 ```sh
