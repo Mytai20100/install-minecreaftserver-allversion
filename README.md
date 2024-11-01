@@ -21,5 +21,5 @@ curl clone https://github.com/Mytai20100/install-minecreaftserver-allversion/raw
 bash install.sh 
 ```
 
-<img src="https://i.imgur.com/lUrkQBN.png" alt="neofetch" align="right" height="240px">
+
 
