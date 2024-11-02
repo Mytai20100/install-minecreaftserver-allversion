@@ -20,6 +20,6 @@ wget clone https://github.com/Mytai20100/install-minecreaftserver-allversion/raw
 #Run install
 bash install.sh 
 ```
-
-![Integuru in action](./https://github.com/Mytai20100/install-minecreaftserver-allversion/blob/main/meme/funny-cat-eating-chips.gif)
+<img src="[https://imgur.com/AXmxbev.png](https://github.com/Mytai20100/install-minecreaftserver-allversion/blob/main/meme/funny-cat-eating-chips.gi)" alt="Minecreaft" align="right" height="240px">
+![Integuru in action](./funny-cat-eating-chips.gif)
 
