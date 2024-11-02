@@ -11,7 +11,6 @@ echo "
 #
 #                           Copyright (C) 2021 - 2024
 #
-#
 #######################################################################################"
 
 # Prompt user for server folder name
@@ -22,7 +21,7 @@ cd "$server_folder" || exit
 # Prompt user to choose server type
 echo "Select the type of Minecraft server to install:"
 echo "1) Vanilla"
-echo "2) Spigot"
+echo "2) Spigot (using BuildTools)"
 echo "3) Paper"
 echo "4) Purpur"
 read -p "Enter the number corresponding to the server type (default is Vanilla): " server_choice
@@ -31,15 +30,29 @@ server_choice=${server_choice:-1} # Default to Vanilla
 # Prompt user for specific server version
 read -p "Enter the server version you want to install (e.g., 1.20.1): " server_version
 
-# Determine the download URL based on user selection and version
+# Determine the download URL based on user selection
 case $server_choice in
     1) 
         server_url="https://piston-data.mojang.com/v1/objects/5b868151bd02b41319f54c8d4061b8cae84e665c/server.jar" 
         server_name="Vanilla"
         ;;
-    2) 
-        server_url="https://download.getbukkit.org/spigot/spigot-${server_version}.jar" 
-        server_name="Spigot"
+    2)
+        # Download BuildTools.jar
+        echo "Downloading BuildTools.jar..."
+        wget -O BuildTools.jar "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+        
+        # Run BuildTools to compile Spigot
+        echo "Running BuildTools to compile Spigot..."
+        java -jar BuildTools.jar --rev "$server_version"
+        
+        # Check if the Spigot jar is created
+        if [[ -f "spigot-$server_version.jar" ]]; then
+            server_name="Spigot"
+            server_url="spigot-$server_version.jar"
+        else
+            echo "Error: Failed to compile Spigot. Please check your version and try again."
+            exit 1
+        fi
         ;;
     3) 
         server_url="https://api.papermc.io/v2/projects/paper/versions/${server_version}/builds/latest/downloads/paper-${server_version}-latest.jar" 
@@ -56,24 +69,20 @@ case $server_choice in
         ;;
 esac
 
-echo "Downloading $server_name server (version $server_version) from $server_url..."
-
-# Check if wget is installed, use curl if wget is not found
-if command -v wget &> /dev/null; then
-    wget clone -O server.jar "$server_url"
-else
-    echo "wget not found, using curl..."
-    if command -v curl &> /dev/null; then
-        curl clone -L -o server.jar "$server_url"
-        
-        # Kiểm tra nếu curl gặp lỗi
-        if [ $? -ne 0 ]; then
-            echo "Error: Failed to download server file with curl. Please check the URL or your internet connection."
+# Download the server jar if not using BuildTools
+if [[ $server_choice -ne 2 ]]; then
+    echo "Downloading $server_name server (version $server_version) from $server_url..."
+    # Check if wget is installed, use curl if wget is not found
+    if command -v wget &> /dev/null; then
+        wget -O server.jar "$server_url"
+    else
+        echo "wget not found, using curl..."
+        if command -v curl &> /dev/null; then
+            curl -L -o server.jar "$server_url"
+        else
+            echo "Error: Neither wget nor curl is installed. Please install one of them to proceed."
             exit 1
         fi
-    else
-        echo "Error: Neither wget nor curl is installed. Please install one of them to proceed."
-        exit 1
     fi
 fi
 
