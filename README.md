@@ -21,5 +21,5 @@ wget clone https://github.com/Mytai20100/install-minecreaftserver-allversion/raw
 bash install.sh 
 ```
 
-
+![Integuru in action](./https://github.com/Mytai20100/install-minecreaftserver-allversion/blob/main/meme/funny-cat-eating-chips.gif)
 
